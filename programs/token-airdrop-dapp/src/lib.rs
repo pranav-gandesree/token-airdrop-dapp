@@ -6,7 +6,7 @@ use error::ErrorCode;
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Mint, Token, TokenAccount};
 
-declare_id!("FAnXPxphmbwHJANagSzTx1Mpw1Ad5xsieFBBK975gXmC");
+declare_id!("5f9SViZQr76U5V7sHpzBRrBEJ6ypjd4gfQWPdM2Rta7T");
 
 
 pub const AIRDROP_MINT_ADDRESS: &str = "8iMpYJ5LhT3DPnGHU3pvpPkyY5gN2mWmVrF67KesjFUY";
