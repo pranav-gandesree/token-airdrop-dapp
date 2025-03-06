@@ -1,77 +1,225 @@
 {
-  "version": "0.1.0",
-  "name": "token_airdrop_dapp",
   "address": "5f9SViZQr76U5V7sHpzBRrBEJ6ypjd4gfQWPdM2Rta7T",
   "metadata": {
     "name": "token_airdrop_dapp",
     "version": "0.1.0",
     "spec": "0.1.0",
-    "description": "Claim your airdrop"
+    "description": "claim your token aidrop"
   },
   "instructions": [
     {
-      "name": "initializeAirdrop",
+      "name": "claim_airdrop",
+      "discriminator": [137, 50, 122, 111, 89, 254, 8, 20],
       "accounts": [
-        { "name": "tokenAtaForProgram", "isMut": true, "isSigner": false },
-        { "name": "data", "isMut": true, "isSigner": false },
-        { "name": "tokenMint", "isMut": false, "isSigner": false },
-        { "name": "tokenAtaForAdmin", "isMut": true, "isSigner": false },
-        { "name": "admin", "isMut": true, "isSigner": true },
-        { "name": "systemProgram", "isMut": false, "isSigner": false },
-        { "name": "tokenProgram", "isMut": false, "isSigner": false },
-        { "name": "rent", "isMut": false, "isSigner": false }
+        {
+          "name": "token_ata_for_program",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "token_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "data",
+          "writable": true
+        },
+        {
+          "name": "token_mint",
+          "address": "8iMpYJ5LhT3DPnGHU3pvpPkyY5gN2mWmVrF67KesjFUY"
+        },
+        {
+          "name": "token_ata_for_user",
+          "writable": true
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admin"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
       ],
-      "args": [{ "name": "airdropAmount", "type": "u64" }]
+      "args": [
+        {
+          "name": "token_ata_for_program_bump",
+          "type": "u8"
+        }
+      ]
     },
     {
-      "name": "depositTokens",
+      "name": "deposit_tokens",
+      "discriminator": [176, 83, 229, 18, 191, 143, 176, 150],
       "accounts": [
-        { "name": "tokenAtaForProgram", "isMut": true, "isSigner": false },
-        { "name": "data", "isMut": true, "isSigner": false },
-        { "name": "tokenMint", "isMut": false, "isSigner": false },
-        { "name": "tokenAtaForAdmin", "isMut": true, "isSigner": false },
-        { "name": "admin", "isMut": true, "isSigner": true },
-        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+        {
+          "name": "token_ata_for_program",
+          "writable": true
+        },
+        {
+          "name": "data",
+          "writable": true
+        },
+        {
+          "name": "token_mint",
+          "address": "8iMpYJ5LhT3DPnGHU3pvpPkyY5gN2mWmVrF67KesjFUY"
+        },
+        {
+          "name": "token_ata_for_admin",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
       ],
-      "args": [{ "name": "amount", "type": "u64" }]
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
     },
     {
-      "name": "claimAirdrop",
+      "name": "initialize_airdrop",
+      "discriminator": [96, 196, 74, 102, 61, 195, 48, 184],
       "accounts": [
-        { "name": "tokenAtaForProgram", "isMut": true, "isSigner": false },
-        { "name": "data", "isMut": true, "isSigner": false },
-        { "name": "tokenMint", "isMut": false, "isSigner": false },
-        { "name": "tokenAtaForUser", "isMut": true, "isSigner": false },
-        { "name": "user", "isMut": true, "isSigner": true },
-        { "name": "admin", "isMut": false, "isSigner": false },
-        { "name": "tokenProgram", "isMut": false, "isSigner": false },
-        { "name": "systemProgram", "isMut": false, "isSigner": false }
+        {
+          "name": "token_ata_for_program",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114, 154, 41, 154, 16, 138, 96, 161, 182, 70, 123, 85, 102,
+                  246, 83, 217, 53, 204, 225, 39, 25, 174, 60, 40, 83, 195, 43,
+                  215, 223, 173, 250, 133
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "data",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [100, 97, 116, 97]
+              },
+              {
+                "kind": "account",
+                "path": "admin"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_mint",
+          "address": "8iMpYJ5LhT3DPnGHU3pvpPkyY5gN2mWmVrF67KesjFUY"
+        },
+        {
+          "name": "token_ata_for_admin",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
       ],
-      "args": [{ "name": "tokenAtaForProgramBump", "type": "u8" }]
+      "args": [
+        {
+          "name": "airdrop_amount",
+          "type": "u64"
+        }
+      ]
     }
   ],
   "accounts": [
     {
       "name": "Data",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          { "name": "admin", "type": "publicKey" },
-          { "name": "totalTokens", "type": "u64" },
-          { "name": "tokensDistributed", "type": "u64" },
-          { "name": "claimedAddresses", "type": { "vec": "publicKey" } }
-        ]
-      }
+      "discriminator": [206, 156, 59, 188, 18, 79, 240, 232]
     }
   ],
   "errors": [
-    { "code": 6000, "name": "Overflow", "msg": "Arithmetic Overflow" },
-    { "code": 6001, "name": "InvalidAdmin", "msg": "Invalid Admin" },
+    {
+      "code": 6000,
+      "name": "Overflow",
+      "msg": "Arithmetic Overflow"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidAdmin",
+      "msg": "Invalid Admin"
+    },
     {
       "code": 6002,
       "name": "AlreadyClaimed",
       "msg": "Already claimed airdrop"
     },
-    { "code": 6003, "name": "InsufficientTokens", "msg": "Insufficient tokens" }
+    {
+      "code": 6003,
+      "name": "InsufficientTokens",
+      "msg": "Insufficient tokens"
+    }
+  ],
+  "types": [
+    {
+      "name": "Data",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_tokens",
+            "type": "u64"
+          },
+          {
+            "name": "tokens_distributed",
+            "type": "u64"
+          },
+          {
+            "name": "claimed_addresses",
+            "type": {
+              "vec": "pubkey"
+            }
+          }
+        ]
+      }
+    }
   ]
 }
